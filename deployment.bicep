@@ -159,8 +159,20 @@ resource dataProcessorFunction 'Microsoft.Web/sites@2022-03-01' = {
           value: 'dotnet'
         }
         {
+          name: 'SqlServerConnectionString'
+          value: 'Server=tcp:sqlsrv-gmazrcptdemo-demo-cc.database.windows.net,1433;Initial Catalog=sqldb-gmazrcptdemo-demo-cc;Persist Security Info=False;User ID=receiptSqlAdmin;Password=${sqlAdminPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;' //Use MSI in production
+        }
+        {
           name: 'SFTPStorageConnectionString'
           value: 'DefaultEndpointsProtocol=https;AccountName=${sftpStorageAccount.name};EndpointSuffix=${az.environment().suffixes.storage};AccountKey=${sftpStorageAccount.listKeys().keys[0].value}'
+        }
+        {
+          name: 'DocIntelligenceKey'
+          value: ''
+        }
+        {
+          name: 'DocIntelligenceEndpoint'
+          value: 'https://canadacentral.api.cognitive.microsoft.com/'
         }
       ]
     }
